@@ -1,7 +1,11 @@
 import streamlit as st
+from typing import List
 
 
 st.set_page_config(page_title="Instagram Feed Control", page_icon="📊", layout="wide")
+
+SESSION_PROGRESS = 72
+DAILY_TARGET_PROGRESS = 88
 
 st.markdown(
     """
@@ -27,7 +31,7 @@ def toggle_widget(label: str, key: str, value: bool = True) -> bool:
     return st.checkbox(label, value=value, key=key)
 
 
-def render_tab(title: str, hint: str, examples: list[str], key_prefix: str) -> None:
+def render_tab(title: str, hint: str, examples: List[str], key_prefix: str) -> None:
     left, right = st.columns([2.2, 1])
     with left:
         st.markdown(f"### {title} Training")
@@ -58,7 +62,7 @@ def render_tab(title: str, hint: str, examples: list[str], key_prefix: str) -> N
         st.markdown("### Session Status")
         st.metric("Estimated Reach", "42.8K", "+12%")
         st.metric("Engagement Lift", "8.4%", "+1.1%")
-        st.progress(72, text="Simulation Progress")
+        st.progress(SESSION_PROGRESS, text="Simulation Progress")
 
     st.markdown("#### Dummy Preview")
     p1, p2, p3 = st.columns(3)
@@ -92,7 +96,7 @@ with st.sidebar:
     st.button("Save Settings", use_container_width=True)
     st.divider()
     st.metric("Profile Health", "91/100", "+3")
-    st.progress(88, text="Daily Target Completion")
+    st.progress(DAILY_TARGET_PROGRESS, text="Daily Target Completion")
 
 top_cols = st.columns(4)
 top_cols[0].metric("Active Training Sets", "4")
